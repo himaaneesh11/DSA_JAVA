@@ -19,9 +19,10 @@ public class SinglyLikedList {
     }
 
     public void traverse(){
-        while(head != null){
-            System.out.print(head.data + "->");
-            head = head.next;
+        Node temp = head;
+        while(temp != null){
+            System.out.print(temp.data + "->");
+            temp = temp.next;
         }
         System.out.print("End");
     }
@@ -29,6 +30,10 @@ public class SinglyLikedList {
     public void insertatend(int data){
         Node newNode = new Node(data);
         Node temp = head;
+        if(head == null){
+            insertatbeginning(data);
+            return;
+        }
         while(temp.next != null){
             temp = temp.next;
         }
@@ -42,10 +47,11 @@ public class SinglyLikedList {
         Node newNode = new Node(data);
         Node temp = head;
         int currpos=1;
-        if(position < 1 || position >size ){
+        if(position < 1 || position >size+1 ){
             System.out.println("Invalid position");
+            return;
         }
-        else if(position == size){
+        else if(position == size+1){
             insertatend(data);
         }
         else if (position==1) {
@@ -86,23 +92,27 @@ public class SinglyLikedList {
     public void deleteatbeginning(){
         if(head == null){
             System.out.println("Empty List");
+            return;
         }
         else if(head.next == null){
             head = null;
             tail = null;
+            size--;
         }
         else{
             head = head.next;
+            size--;
         }
-        size--;
+
     }
 
     public void deleteatend(){
         Node temp = head;
         if(head == null){
             System.out.println("Empty List");
+            return;
         }
-        else if(head.next == null){
+        if(head.next == null){
             head = null;
             tail = null;
         }
@@ -112,8 +122,8 @@ public class SinglyLikedList {
             }
             temp.next = null;
             tail = temp;
-            size--;
         }
+        size--;
 
     }
 
@@ -122,6 +132,7 @@ public class SinglyLikedList {
         int currpos=1;
         if(position < 1 || position >size){
             System.out.println("Invalid position");
+            return;
         }
         else if(position==1){
             deleteatbeginning();
@@ -132,6 +143,7 @@ public class SinglyLikedList {
         else{
             while(currpos<position-1){
                 temp = temp.next;
+                currpos++;
             }
             temp.next=temp.next.next;
             size--;
@@ -142,8 +154,13 @@ public class SinglyLikedList {
     public void deleteavalue(int value){
         Node temp = head;
         Node prev = null;
+        if(head == null){
+            System.out.println("Empty List");
+            return;
+        }
         if(head.data==value){
             deleteatbeginning();
+            return;
         }
         while((temp!=null)&&(temp.data!=value)){
             prev = temp;
@@ -151,10 +168,10 @@ public class SinglyLikedList {
         }
         if(temp==null){
             System.out.println("Invalid value");
+            return;
         }
         else if((temp.data==value)&&(temp.next==null)){
             deleteatend();
-            tail=prev;
         }
         else{
             prev.next = temp.next;
@@ -165,8 +182,9 @@ public class SinglyLikedList {
 
     public boolean searchanvalue(int value){
         Node temp = head;
-        if(head.data==value){
-            return true;
+        if(head == null){
+            System.out.println("Empty List");
+            return false;
         }
         while((temp!=null)){
             if(temp.data==value) {
