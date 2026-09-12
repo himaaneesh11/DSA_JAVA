@@ -79,7 +79,36 @@ public class DoublyLinkedList {
         }
     }
 
+    public void insertaftervalue(int value,int data){
+        DLLNode newnode = new DLLNode(data);
+        DLLNode temp = head;
+        if(head == null){
+            insertatbeggining(data);
+            return;
+        }
+        while(temp != null){
+            if(temp.data == value){
+                newnode.prev = temp;
+                newnode.next = temp.next;
+                if(temp.next != null){
+                    temp.next.prev = newnode;
+                }
+                else{
+                    tail = newnode;
+                }
+                temp.next = newnode;
+                size++;
+                return;
+            }
+            temp = temp.next;
+        }
+    }
+
     public void traversal(){
+        if(head == null){
+            System.out.println("List is empty");
+            return;
+        }
         DLLNode temp = head;
         while(temp != null){
             System.out.print(temp.data+"<->");
@@ -104,7 +133,5 @@ public class DoublyLinkedList {
         System.out.println("\nThe size of the linked list is : "+list.size);
         System.out.println("The head is pointing to the data :   "+ list.head.data);
         System.out.println("The tail is pointing to the data :   "+ list.tail.data);
-
-
     }
 }
