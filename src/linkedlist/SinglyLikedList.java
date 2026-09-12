@@ -63,6 +63,22 @@ public class SinglyLikedList {
 
     }
 
+    public void insetaftervalue(int data,int value){
+        Node newNode = new Node(data);
+        Node temp = head;
+        while((temp!=null)&&(temp.data!=value)){
+            temp = temp.next;
+        }
+        if(temp==null){
+            System.out.println("Invalid value");
+        }
+        else{
+            newNode.next = temp.next;
+            temp.next = newNode;
+            size++;
+        }
+    }
+
     public static void main(String[] args) {
         SinglyLikedList list = new SinglyLikedList();
         list.insertatbeginning(5);
@@ -73,6 +89,7 @@ public class SinglyLikedList {
         list.insertatend(6);
         list.insertatspecificposition(0,1);
         list.insertatspecificposition(7,7);
+        list.insetaftervalue(8,7);
         System.out.println("The size of the linked list is : "+list.size);
         System.out.println("The head is pointing to the data :   "+ list.head.data);
         System.out.println("The tail is pointing to the data : "+list.tail.data);
