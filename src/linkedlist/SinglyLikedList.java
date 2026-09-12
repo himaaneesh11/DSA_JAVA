@@ -73,10 +73,108 @@ public class SinglyLikedList {
             System.out.println("Invalid value");
         }
         else{
+            if(temp.next==null){
+                tail=newNode;
+            }
             newNode.next = temp.next;
             temp.next = newNode;
             size++;
         }
+
+    }
+
+    public void deleteatbeginning(){
+        if(head == null){
+            System.out.println("Empty List");
+        }
+        else if(head.next == null){
+            head = null;
+            tail = null;
+        }
+        else{
+            head = head.next;
+        }
+        size--;
+    }
+
+    public void deleteatend(){
+        Node temp = head;
+        if(head == null){
+            System.out.println("Empty List");
+        }
+        else if(head.next == null){
+            head = null;
+            tail = null;
+        }
+        else{
+            while(temp.next.next!=null){
+                temp = temp.next;
+            }
+            temp.next = null;
+            tail = temp;
+            size--;
+        }
+
+    }
+
+    public void deleteatspecificposition(int position){
+        Node temp = head;
+        int currpos=1;
+        if(position < 1 || position >size){
+            System.out.println("Invalid position");
+        }
+        else if(position==1){
+            deleteatbeginning();
+        }
+        else if(position==size){
+            deleteatend();
+        }
+        else{
+            while(currpos<position-1){
+                temp = temp.next;
+            }
+            temp.next=temp.next.next;
+            size--;
+        }
+
+    }
+
+    public void deleteavalue(int value){
+        Node temp = head;
+        Node prev = null;
+        if(head.data==value){
+            deleteatbeginning();
+        }
+        while((temp!=null)&&(temp.data!=value)){
+            prev = temp;
+            temp = temp.next;
+        }
+        if(temp==null){
+            System.out.println("Invalid value");
+        }
+        else if((temp.data==value)&&(temp.next==null)){
+            deleteatend();
+            tail=prev;
+        }
+        else{
+            prev.next = temp.next;
+            size--;
+        }
+
+    }
+
+    public boolean searchanvalue(int value){
+        Node temp = head;
+        if(head.data==value){
+            return true;
+        }
+        while((temp!=null)){
+            if(temp.data==value) {
+                return true;
+            }
+            temp = temp.next;
+        }
+       return false;
     }
 
     public static void main(String[] args) {
@@ -90,6 +188,13 @@ public class SinglyLikedList {
         list.insertatspecificposition(0,1);
         list.insertatspecificposition(7,7);
         list.insetaftervalue(8,7);
+        list.deleteatbeginning();
+        list.deleteatend();
+        list.deleteatspecificposition(1);
+        list.deleteatspecificposition(6);
+        list.deleteatspecificposition(786);
+        list.deleteavalue(6);
+        System.out.println(list.searchanvalue(5));
         System.out.println("The size of the linked list is : "+list.size);
         System.out.println("The head is pointing to the data :   "+ list.head.data);
         System.out.println("The tail is pointing to the data : "+list.tail.data);
