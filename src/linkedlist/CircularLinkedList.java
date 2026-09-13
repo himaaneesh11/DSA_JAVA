@@ -84,7 +84,7 @@ public class CircularLinkedList {
          System.out.println("No value exist");
      }
 
-     public void inserbeforeposition(int data,int position){
+     public void insertbeforeposition(int data,int position){
          if(position<1 || position>size+1){
              System.out.println("Invalid position");
              return ;
@@ -131,7 +131,7 @@ public class CircularLinkedList {
         list.insertatbeggining(10);
         list.insertatend(70);
         list.insertaftervalue(100,80);
-        list.inserbeforeposition(0,1);
+        list.insertbeforeposition(0,1);
         list.traverse();
         System.out.println("\nThe size of list is : "+list.size);
         System.out.println("The head is pointing to data : "+list.head.data);
