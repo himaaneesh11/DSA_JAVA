@@ -110,9 +110,6 @@ public class CircularDoublyLinkedList {
         size++;
     }
 
-
-
-
     public static void main(String[] args) {
         CircularDoublyLinkedList list = new CircularDoublyLinkedList();
         list.insertatbeggining(5);
