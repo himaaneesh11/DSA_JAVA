@@ -1,3 +1,5 @@
+package stacks;
+
 public class stackusingarray {
     int [] stackarray;
     int top;
