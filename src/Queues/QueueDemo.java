@@ -9,6 +9,7 @@ public class QueueDemo {
         q.add(10);
         q.add(20);
         q.add(1);
+        q.add(999);
         System.out.println("Queue is : "+q);
         System.out.println(q.remove());
         System.out.println("Queue is : "+q);
