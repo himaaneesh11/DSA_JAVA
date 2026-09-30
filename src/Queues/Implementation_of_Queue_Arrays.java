@@ -2,12 +2,12 @@ package Queues;
 
 public class Implementation_of_Queue_Arrays {
     //Using two pointer approach
-    public class ArrayQueue{
+
         int [] queue;
         int front;
         int rear;
         int size;
-        public ArrayQueue(int size){
+        public Implementation_of_Queue_Arrays(int size) {
             this.size = size;
             this.queue = new int[size];
             front = -1;
@@ -15,7 +15,7 @@ public class Implementation_of_Queue_Arrays {
         }
 
         public void enqueue(int value){
-            if(rear == size-1){
+            if(isFull()){
                 System.out.println("Queue is full");
                 return;
             }
@@ -27,8 +27,8 @@ public class Implementation_of_Queue_Arrays {
         }
 
         public int dequeue(){
-            if(rear == size-1){
-                System.out.println("Queue is full");
+            if(isEmpty()){
+                System.out.println("Queue is  empty");
                 return -1;
             }
             if(front == rear){
@@ -45,7 +45,6 @@ public class Implementation_of_Queue_Arrays {
         public boolean isEmpty(){
             return rear == -1;
         }
-
 
         public boolean isFull(){
             return rear == queue.length-1;
@@ -68,11 +67,16 @@ public class Implementation_of_Queue_Arrays {
             }
             return queue[front];
         }
-    }
 
     public static void main(String[] args) {
-
-
-
+        Implementation_of_Queue_Arrays q1 = new Implementation_of_Queue_Arrays(100);
+        q1.enqueue(10);
+        q1.enqueue(20);
+        q1.enqueue(30);
+        q1.enqueue(40);
+        q1.display();
+        System.out.println("\nFront element: "+q1.peek());
     }
 }
+
+
