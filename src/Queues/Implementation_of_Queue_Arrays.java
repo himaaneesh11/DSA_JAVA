@@ -75,7 +75,7 @@ public class Implementation_of_Queue_Arrays {
         q1.enqueue(30);
         q1.enqueue(40);
         q1.display();
-        System.out.println("\nFront element: "+q1.peek());
+        System.out.println("\nFront element is: "+q1.peek());
     }
 }
 
