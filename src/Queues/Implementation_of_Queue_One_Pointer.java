@@ -10,7 +10,7 @@ public class Implementation_of_Queue_One_Pointer {
     }
 
     public void enqueue(int value){
-        if(rear == queue.length-1){
+        if(isFull()){
             System.out.println("Queue is full can not insert");
             return;
         }
@@ -18,12 +18,12 @@ public class Implementation_of_Queue_One_Pointer {
     }
 
     public int dequeue(){
-        if(rear == -1){
+        if(isEmpty()){
             System.out.println("Queue is empty");
             return -1;
         }
         int removedelement=queue[0];
-        for(int i=1;i<rear;i++){
+        for(int i=1;i<=rear;i++){
             queue[i-1]=queue[i];
         }
         rear--;
@@ -31,7 +31,7 @@ public class Implementation_of_Queue_One_Pointer {
     }
 
     public int peek(){
-        if(rear == -1){
+        if(isEmpty()){
             System.out.println("Queue is empty");
             return -1;
         }
